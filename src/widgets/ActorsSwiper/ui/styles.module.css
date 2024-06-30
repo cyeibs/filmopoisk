@@ -1,0 +1,29 @@
+.carouselContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.carousel {
+  display: flex;
+  gap: var(--gap-24px);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+  /* padding: 10px 0; */
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carouselItem {
+  flex-shrink: 0;
+  margin-right: 10px;
+  border-radius: var(--br-8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,191 @@
+.ticketCard {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  border-radius: var(--br-8px);
+  background-color: var(--color-white);
+  flex-wrap: wrap;
+  padding: 24px;
+  box-sizing: border-box;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.ticketCardShort {
+  gap: var(--gap-24px);
+}
+
+.ticketCardFull {
+  gap: var(--gap-32px);
+}
+
+.containerIcon {
+  position: relative;
+  border-radius: var(--br-8px);
+  object-fit: cover;
+}
+
+.containerIconShort {
+  width: 100px;
+}
+
+.containerIconFull {
+  width: 400px;
+}
+
+.frameParent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1;
+  max-width: 100%;
+  text-align: left;
+}
+
+.lableParent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex: 1;
+  max-width: 100%;
+  position: relative;
+}
+
+.lableParentShort {
+  gap: var(--gap-base);
+}
+
+.lableParentFull {
+  gap: var(--gap-24px);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-family-sf);
+  font-weight: var(--font-weight-bold);
+  display: flex;
+  align-items: center;
+  max-width: 90%;
+  position: relative;
+}
+
+.titleShort {
+  font-size: 20px;
+}
+
+.titleFull {
+  font-size: var(--font-size-big);
+}
+
+.frameGroup {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-self: stretch;
+  position: relative;
+  max-width: 90%;
+}
+
+.frameGroupShort {
+  gap: var(--gap-12px);
+}
+.frameGroupFull {
+  gap: var(--gap-base);
+}
+
+.lableGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+}
+
+.descriptionGroupFull {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+}
+
+.lable {
+  text-decoration: none;
+  font-family: var(--font-family-sf);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.labelShort {
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-small);
+  min-width: 90px;
+  color: var(--color-darkgray);
+}
+
+.labelFull {
+  font-weight: var(--font-weight-semibold);
+  font-size: 20px;
+  color: var(--color-gray);
+}
+
+.description {
+  text-decoration: none;
+  font-family: var(--font-family-sf);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-gray);
+  position: relative;
+  max-width: 90%;
+}
+
+.descriptionShort {
+  font-size: var(--font-size-small);
+}
+
+.descriptionFull {
+  font-size: 20px;
+}
+
+.info {
+  font-size: var(--font-size-base);
+}
+
+.score {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-8px);
+  color: var(--color-black);
+  font-family: var(--font-family-sf);
+  font-weight: var(--font-weight-regular);
+  position: relative;
+  z-index: 10;
+}
+
+@media screen and (max-width: 1125px) {
+  .frameParent {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 1025px) {
+  .frameParent,
+  .lableParent {
+    min-width: 100%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .lable {
+    font-size: 16px;
+    line-height: 16px;
+  }
+}

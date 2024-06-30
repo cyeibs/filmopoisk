@@ -1,0 +1,75 @@
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("/fonts/SFProText-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("/fonts/SFProText-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("/fonts/SFProText-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("/fonts/SFProText-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+:root {
+  box-sizing: border-box;
+  background: #ededed;
+
+  /* Fonts */
+  --font-family-sf: "SF Pro Text", sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-size-base: 1rem;
+  --font-size-big: 2rem;
+  --font-size-small: 0.875rem;
+
+  /* Colors */
+  --color-black: #000;
+  --color-gray: #1b1f23;
+  --color-darkgray: #ababab;
+  --color-light-gray: #ced2d6;
+  --color-extralight-gray: #e1e3e6;
+  --color-orange: #ff5500;
+  --color-heave-orange: #e94e00;
+  --color-white: #ffffff;
+  --color-pink: #f04075;
+  --color-light-black: #333333;
+  --color-thin-gray: #999fa6;
+
+  /* Gaps */
+  --gap-8px: 8px;
+  --gap-base: 16px;
+  --gap-24px: 24px;
+  --gap-32px: 32px;
+  --gap-12px: 12px;
+
+  /* Border radiuses */
+  --br-8px: 8px;
+  --br-32px: 32px;
+
+  /* shadow */
+  --shadow: 0px 10px 22px -4px rgba(27, 31, 35, 0.12);
+}
+
+body {
+  margin: 0;
+  line-height: normal;
+  font-family: var(--font-family-sf);
+}

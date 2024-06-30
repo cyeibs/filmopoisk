@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-8px);
+  align-items: center;
+  justify-content: center;
+  height: 80svh;
+}
+
+.title {
+  font-family: var(--font-family-sf);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-gray);
+}
+
+.secondary {
+  font-family: var(--font-family-sf);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-thin-gray);
+  font-size: var(--font-size-small);
+}
