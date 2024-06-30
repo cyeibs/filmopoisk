@@ -1,4 +1,4 @@
-import React, {
+import {
   FunctionComponent,
   ReactNode,
   createContext,
@@ -30,7 +30,9 @@ export const FilterProvider: FunctionComponent<{ children: ReactNode }> = ({
 
   const updateFilters = (key: string, value: string) => {
     const newFilters = { ...filters, [key]: value };
-    setFilters(newFilters);
+    setFilters((prev) => {
+      return { ...prev, [key]: value };
+    });
 
     const searchParams = new URLSearchParams(location.search);
     Object.entries(newFilters).forEach(([key, value]) => {

@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, useEffect, useCallback, useRef } from "react";
+import { ChangeEvent, useState, useEffect } from "react";
 import { useFilters } from "../filterBy/useFilters";
 import { debounce } from "@/shared/lib/debounce";
 
@@ -6,20 +6,18 @@ export const useSearchInput = () => {
   const { filters, updateFilters } = useFilters();
   const [inputValue, setInputValue] = useState(filters.title || "");
 
-  const debouncedUpdateFilters = useRef(
-    debounce((value: string) => {
-      updateFilters("title", value);
-    }, 300)
-  ).current;
-
   useEffect(() => {
     setInputValue(filters.title || "");
   }, [filters.title]);
 
+  const debouncedUpdateFilters = debounce((key: string, value: string) => {
+    updateFilters(key, value);
+  }, 300);
+
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setInputValue(value);
-    debouncedUpdateFilters(value);
+    debouncedUpdateFilters("title", value);
   };
 
   const handleReset = () => {

@@ -1,3 +1,4 @@
+// Select.tsx
 import { FunctionComponent } from "react";
 import styles from "./styles.module.css";
 import { Icon } from "../../Icon";
@@ -10,9 +11,12 @@ export const Select: FunctionComponent<SelectProps> = ({
   placeholder,
   initialValue,
   onSelect,
+  dropdownKey,
 }) => {
-  const { isOpen, selectedKey, toggleDropdown, handleSelect } =
-    useSelect(initialValue);
+  const { isOpen, selectedKey, toggleDropdown, handleSelect } = useSelect(
+    initialValue,
+    dropdownKey
+  );
 
   return (
     <div className={styles.select}>
@@ -37,19 +41,21 @@ export const Select: FunctionComponent<SelectProps> = ({
       {isOpen && (
         <div className={styles.dropdown} role="listbox">
           <div className={styles.dropdownContainer}>
-            {Object.entries(data).map(([key, value]) => (
-              <div
-                key={key}
-                className={`${styles.dropdownItem} ${
-                  selectedKey === key ? styles.selected : ""
-                }`}
-                onClick={() => handleSelect(key, onSelect)}
-                role="option"
-                aria-selected={selectedKey === key}
-              >
-                {value}
-              </div>
-            ))}
+            {Object.entries(data)
+              .sort()
+              .map(([key, value]) => (
+                <div
+                  key={key}
+                  className={`${styles.dropdownItem} ${
+                    selectedKey === key ? styles.selected : ""
+                  }`}
+                  onClick={() => handleSelect(key, onSelect)}
+                  role="option"
+                  aria-selected={selectedKey === key}
+                >
+                  {value}
+                </div>
+              ))}
           </div>
         </div>
       )}

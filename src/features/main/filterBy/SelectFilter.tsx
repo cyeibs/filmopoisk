@@ -23,6 +23,7 @@ export const SelectFilter: FunctionComponent<SelectFilterProps> = ({
       placeholder={placeholder}
       initialValue={initialValue}
       onSelect={handleSelect}
+      dropdownKey={filterKey}
     />
   );
 };

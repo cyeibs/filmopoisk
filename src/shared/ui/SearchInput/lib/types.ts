@@ -4,4 +4,5 @@ export type SelectProps = {
   placeholder: string;
   initialValue?: string;
   onSelect: (key: string) => void;
+  dropdownKey?: string;
 };

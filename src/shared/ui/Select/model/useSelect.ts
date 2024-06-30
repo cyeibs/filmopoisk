@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import { useDropdown } from "./useDropdown";
 
-export const useSelect = (initialValue?: string) => {
-  const [isOpen, setIsOpen] = useState(false);
+export const useSelect = (initialValue?: string, dropdownKey?: string) => {
+  const { openDropdown, setOpenDropdown } = useDropdown();
   const [selectedKey, setSelectedKey] = useState<string | null>(
     initialValue || null
   );
@@ -9,15 +10,21 @@ export const useSelect = (initialValue?: string) => {
   useEffect(() => {
     if (initialValue) {
       setSelectedKey(initialValue);
+    } else {
+      setSelectedKey(null);
     }
   }, [initialValue]);
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const isOpen = openDropdown === dropdownKey;
+
+  const toggleDropdown = () => {
+    setOpenDropdown(isOpen ? null : dropdownKey || null);
+  };
 
   const handleSelect = (key: string, onSelect: (key: string) => void) => {
     setSelectedKey(key);
     onSelect(key);
-    setIsOpen(false);
+    setOpenDropdown(null);
   };
 
   return {

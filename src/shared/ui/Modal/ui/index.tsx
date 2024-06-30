@@ -1,32 +1,20 @@
-import React, { useState } from "react";
 import { FunctionComponent } from "react";
 import ReactDOM from "react-dom";
 import styles from "./styles.module.css";
 import { Input } from "@/shared/ui/Input";
 import { Button } from "@/shared/ui/Button";
 import { Icon } from "../../Icon";
-import { useModal } from "@/features/modalOpen/hook";
-import { login, selectAuth } from "@/app/RTK/services/authSlice";
 import { Loading } from "../../Loading";
-import { useAppDispatch, useAppSelector } from "@/app/RTK/store";
+import { useModal } from "@/features/modalOpen/hook";
+import { useLogin } from "../lib/useLogin";
 
 export const Modal: FunctionComponent = () => {
   const { isModalOpen, closeModal } = useModal();
-  const dispatch = useAppDispatch();
-  const auth = useAppSelector(selectAuth);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const { username, setUsername, password, setPassword, handleLogin, auth } =
+    useLogin();
 
   if (!isModalOpen) return null;
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    dispatch(login({ username, password })).then((action) => {
-      if (login.fulfilled.match(action)) {
-        closeModal();
-      }
-    });
-  };
   return ReactDOM.createPortal(
     <div className={styles.overlay}>
       <div className={styles.modal}>

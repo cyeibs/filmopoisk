@@ -1,6 +1,7 @@
 import { FunctionComponent, useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import { InputProps } from "../lib/types";
+import { validateTextInput, validatePasswordInput } from "../lib/validation";
 
 export const Input: FunctionComponent<InputProps> = ({
   type,
@@ -13,21 +14,11 @@ export const Input: FunctionComponent<InputProps> = ({
 
   useEffect(() => {
     if (type === "text") {
-      validateTextInput(value);
+      setIsError(!validateTextInput(value));
     } else if (type === "password") {
-      validatePasswordInput(value);
+      setIsError(!validatePasswordInput(value));
     }
   }, [value, type]);
-
-  const validateTextInput = (value: string) => {
-    const isValid = /^[a-zA-Z0-9]+$/.test(value);
-    setIsError(!isValid);
-  };
-
-  const validatePasswordInput = (value: string) => {
-    const isValid = value.length >= 6;
-    setIsError(!isValid);
-  };
 
   return (
     <div className={styles.inputParent}>
