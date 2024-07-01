@@ -3,10 +3,15 @@ import styles from "./styles.module.css";
 import { Icon } from "@/shared/ui/Icon";
 import { RatingProps } from "../lib/types";
 import { useRating } from "../lib/useRating";
+import { useParams } from "react-router-dom";
 
 export const Rating: FunctionComponent<RatingProps> = ({ movieId }) => {
-  const { rating, hover, setHover, handleClick, TOTAL_STARS } =
-    useRating(movieId);
+  const { movieId: movieIdParam } = useParams<{ movieId: string }>();
+  const isMoviePage = Boolean(movieIdParam);
+  const { rating, hover, setHover, handleClick, TOTAL_STARS } = useRating(
+    movieId,
+    isMoviePage
+  );
 
   return (
     <>

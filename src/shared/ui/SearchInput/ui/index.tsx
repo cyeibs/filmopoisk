@@ -1,10 +1,16 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useMemo } from "react";
 import styles from "./styles.module.css";
 import { Icon } from "../../Icon";
 import { useSearchInput } from "@/features/main/search/useSearchInput";
 
 export const SearchInput: FunctionComponent = () => {
   const { inputValue, handleInputChange, handleReset } = useSearchInput();
+
+  const renderResetIcon = useMemo(() => {
+    return inputValue ? (
+      <Icon type="reset" className={["resetIcon"]} onClick={handleReset} />
+    ) : null;
+  }, [inputValue, handleReset]);
 
   return (
     <div className={styles.inputParent}>
@@ -17,9 +23,7 @@ export const SearchInput: FunctionComponent = () => {
           onChange={handleInputChange}
           placeholder="Название фильма"
         />
-        {inputValue && (
-          <Icon type="reset" className={["resetIcon"]} onClick={handleReset} />
-        )}
+        {renderResetIcon}
       </div>
     </div>
   );

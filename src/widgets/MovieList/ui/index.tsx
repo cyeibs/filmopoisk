@@ -20,6 +20,10 @@ export const MovieList: FunctionComponent = () => {
     window.scrollTo(0, 0);
   }, [page]);
 
+  useEffect(() => {
+    setPage(1);
+  }, [filters]);
+
   if (isLoading) return <Loading />;
   if (error) return <EmptyWarn />;
 

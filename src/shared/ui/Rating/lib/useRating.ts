@@ -7,12 +7,12 @@ import { debounce } from "@/shared/lib/debounce";
 
 const TOTAL_STARS = 5;
 
-export const useRating = (movieId: string) => {
+export const useRating = (movieId: string, isMoviePage: boolean) => {
   const dispatch = useAppDispatch();
   const { token } = useAppSelector(selectAuth);
   const [rating, setRating] = useState<number | null>(null);
   const [hover, setHover] = useState<number | null>(null);
-  const { refetch } = useGetMovieByIdQuery(movieId);
+  const { refetch } = useGetMovieByIdQuery(movieId, { skip: !isMoviePage });
 
   useEffect(() => {
     const savedRatings = JSON.parse(localStorage.getItem("ratings") || "{}");
@@ -28,7 +28,7 @@ export const useRating = (movieId: string) => {
       setRating(currentRating);
       dispatch(rateMovie({ movieId, userRate: currentRating })).then(
         (action) => {
-          if (rateMovie.fulfilled.match(action)) {
+          if (rateMovie.fulfilled.match(action) && isMoviePage) {
             refetch();
           }
         }

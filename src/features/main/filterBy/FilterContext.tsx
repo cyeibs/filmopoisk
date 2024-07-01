@@ -2,6 +2,7 @@ import {
   FunctionComponent,
   ReactNode,
   createContext,
+  useCallback,
   useEffect,
   useState,
 } from "react";
@@ -25,26 +26,39 @@ export const FilterProvider: FunctionComponent<{ children: ReactNode }> = ({
     searchParams.forEach((value, key) => {
       filtersFromUrl[key] = value;
     });
-    setFilters(filtersFromUrl);
+    setFilters((prevFilters) => {
+      if (JSON.stringify(prevFilters) !== JSON.stringify(filtersFromUrl)) {
+        return filtersFromUrl;
+      }
+      return prevFilters;
+    });
   }, [location.search]);
 
-  const updateFilters = (key: string, value: string) => {
-    const newFilters = { ...filters, [key]: value };
-    setFilters((prev) => {
-      return { ...prev, [key]: value };
-    });
+  const updateFilters = useCallback(
+    (key: string, value: string) => {
+      const newFilters = { ...filters, [key]: value };
+      setFilters((prev) => {
+        if (prev[key] !== value) {
+          return { ...prev, [key]: value };
+        }
+        return prev;
+      });
 
-    const searchParams = new URLSearchParams(location.search);
-    Object.entries(newFilters).forEach(([key, value]) => {
-      if (value) {
-        searchParams.set(key, value);
-      } else {
-        searchParams.delete(key);
+      const searchParams = new URLSearchParams(location.search);
+      Object.entries(newFilters).forEach(([key, value]) => {
+        if (value) {
+          searchParams.set(key, value);
+        } else {
+          searchParams.delete(key);
+        }
+      });
+
+      if (location.search !== `?${searchParams.toString()}`) {
+        history({ search: searchParams.toString() });
       }
-    });
-
-    history({ search: searchParams.toString() });
-  };
+    },
+    [filters, location.search, history]
+  );
 
   return (
     <FilterContext.Provider value={{ filters, updateFilters }}>
